@@ -296,6 +296,7 @@ class DNSService(service.MultiService):
         self.conf = conf
         forwarders = self.conf['forwarders'].split()
         savedir = self.conf['savedir']
+        self.interface = "0.0.0.0" 
         self.port = self.conf['udp_port']
         self.authorities = []
         self.factory = CallsignServerFactory(forwarders, savedir, self.get_ent())
@@ -311,7 +312,7 @@ class DNSService(service.MultiService):
         return self.factory.zones()
 
     def startService(self):
-        udpservice = internet.UDPServer(self.port, self.protocol, interface="127.0.0.1")
+        udpservice = internet.UDPServer(self.port, self.protocol, interface=self.interface)
         udpservice.startService()
         log.msg("Nameserver listening on port %d" % self.port)
         self.services.append(udpservice)

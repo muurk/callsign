@@ -191,9 +191,23 @@ PUT
 
 Create this domain.  For example::
 
-    PUT /example.com
+    $ curl -X PUT http://127.0.0.1:8053/mydomain.com -v
+    *   Trying 127.0.0.1...
+    * TCP_NODELAY set
+    * Connected to 127.0.0.1 (127.0.0.1) port 8053 (#0)
+    > PUT /mydomain.com HTTP/1.1
+    > Host: 127.0.0.1:8053
+    > User-Agent: curl/7.64.1
+    > Accept: */*
+    > 
+    < HTTP/1.1 201 Created
+    < Date: Wed, 07 Oct 2020 18:29:03 GMT
+    < Content-Length: 0
+    < Server: TwistedWeb/20.3.0
+    < 
+    * Connection #0 to host 127.0.0.1 left intact
+    * Closing connection 0
 
-    201 Created
 
 Possible status code responses are:
 
@@ -236,12 +250,26 @@ Possible status code responses are:
 PUT
 ~~~
 
-Create the record. the payload should be the type and the data, separated by a space.  For example::
+    $ curl -X PUT http://127.0.0.1:8053/mydomain.com -d '{"www": {"type": "A", "address": "1.1.1.1"}}' -H "Content-Type: application/json" -v
+    *   Trying 127.0.0.1...
+    * TCP_NODELAY set
+    * Connected to 127.0.0.1 (127.0.0.1) port 8053 (#0)
+    > PUT /mydomain.com HTTP/1.1
+    > Host: 127.0.0.1:8053
+    > User-Agent: curl/7.64.1
+    > Accept: */*
+    > Content-Type: application/json
+    > Content-Length: 44
+    > 
+    * upload completely sent off: 44 out of 44 bytes
+    < HTTP/1.1 201 Created
+    < Date: Wed, 07 Oct 2020 18:27:27 GMT
+    < Content-Length: 0
+    < Server: TwistedWeb/20.3.0
+    < 
+    * Connection #0 to host 127.0.0.1 left intact
+    * Closing connection 0
 
-    PUT /example.com/www
-    A 192.168.0.1
-
-    201 Created
 
 Possible status code responses are:
 
