@@ -125,7 +125,16 @@ If any domains are listed then only those domains will be allowed::
 
     domains foo.com bar.com baz.com
 
+Docker
+======
 
+Building:
+
+    $ docker build -t callsign:latest .
+
+Executing
+
+    $ docker run -p 127.0.0.1:53:53 -p 127.0.0.1:8053:8053 callsign:latest
 
 API
 ===
